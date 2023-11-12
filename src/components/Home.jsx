@@ -25,17 +25,17 @@ export const Home = () => {
   }, []);
   return (
     <div>
-      <p>{movies.length}</p>
       <div>
         {movies.map((mov) => (
           <ul key={mov.id}>
-            <li>{mov.title}</li>
+            <NavLink to={`/movies/${mov.id}`} info={mov}>
+              {mov.title}
+            </NavLink>
           </ul>
         ))}
       </div>
       Home
       <NavLink to="/*">page not found</NavLink>
-      <NavLink to="/movies/:id">MOVIE</NavLink>
     </div>
   );
 };
