@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 
 export const Movie = () => {
@@ -6,6 +6,7 @@ export const Movie = () => {
   console.log("params: ", params);
 
   const [info, setInfo] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const fetchMovieInfo = async () => {
     try {
@@ -15,6 +16,7 @@ export const Movie = () => {
       const data = await response.json();
       console.log("info data", data);
       setInfo(data);
+      if(response.ok){setLoading(false) }
     } catch (error) {
       console.log("info error", error);
     }
@@ -28,7 +30,10 @@ export const Movie = () => {
 
   return (
     <div>
-      <div
+{loading === true &&<div> LOADING MOVIE DATA</div>}
+
+{loading === false && 
+      <div className=" movies-page"
         style={{
           backgroundImage: `url(${backdropUrl})`,
           backgroundSize: "cover",
@@ -45,7 +50,7 @@ export const Movie = () => {
         <span>
           <h1 className="title">{info.title}</h1>
         </span>
-        <div className="details-container movies-page">
+        <div className="details-container">
           <div className="poster">
             {info && (
               <img
@@ -53,10 +58,10 @@ export const Movie = () => {
               />
             )}
           </div>
-          <div>{Math.round(info.vote_average * 10) / 10}</div>
-          <div className="overview">The plot: {info.overview}</div>
+          <div className="stars">Rating: {Math.round(info.vote_average * 10) / 10}/10</div>
+          <div className="overview">{info.overview}</div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

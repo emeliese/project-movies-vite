@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import {ListCard} from "./ListCard";
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -23,18 +24,20 @@ export const Home = () => {
   useEffect(() => {
     fecthMovies();
   }, []);
+
+  // const backdropUrl = `https://image.tmdb.org/t/p/w1280/${info.backdrop_path}`;
+  // const posterUrl = `https://image.tmdb.org/t/p/w154/${mov.poster_path}`
+
   return (
     <div>
-      <div>
+      <div  className="list-container">
         {movies.map((mov) => (
-          <ul key={mov.id}>
-            <NavLink to={`/movies/${mov.id}`} info={mov}>
-              {mov.title}
-            </NavLink>
-          </ul>
+          <div key={mov.id}>
+
+              <ListCard movie={mov}/>
+          </div>
         ))}
       </div>
-      Home
       <NavLink to="/*">page not found</NavLink>
     </div>
   );
