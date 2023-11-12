@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import {ListCard} from "./ListCard";
+import { ListCard } from "./ListCard";
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);
 
+  //fetch movies from API and parse to JSON
   const fecthMovies = async () => {
     try {
       const response = await fetch(
@@ -21,6 +22,8 @@ export const Home = () => {
       console.log("error", error);
     }
   };
+
+  //call function when component is mounted
   useEffect(() => {
     fecthMovies();
   }, []);
@@ -28,17 +31,16 @@ export const Home = () => {
   // const backdropUrl = `https://image.tmdb.org/t/p/w1280/${info.backdrop_path}`;
   // const posterUrl = `https://image.tmdb.org/t/p/w154/${mov.poster_path}`
 
+  //render card component for every movie
   return (
     <div>
-      <div  className="list-container">
+      <div className="list-container">
         {movies.map((mov) => (
           <div key={mov.id}>
-
-              <ListCard movie={mov}/>
+            <ListCard movie={mov} />
           </div>
         ))}
       </div>
-      <NavLink to="/*">page not found</NavLink>
     </div>
   );
 };
