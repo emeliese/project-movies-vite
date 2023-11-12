@@ -8,7 +8,7 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/*" element={<PageNotFound />} />
-      {<Route path="/movies/:id" element={<Movie />} />}
+      <Route path="/movies/:id" element={<Movie />} />
     </Routes>
   );
   return (
@@ -17,9 +17,3 @@ export const App = () => {
     </BrowserRouter>
   );
 };
-
-// API key
-// 3f5fc34e0d0ca38204d5ccfc5579347c
-
-//fetch the data
-//make a link for each movie and connect with slug

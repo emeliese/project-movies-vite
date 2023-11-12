@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { ListCard } from "./ListCard";
 
 export const Home = () => {
@@ -12,14 +11,10 @@ export const Home = () => {
         "https://api.themoviedb.org/3/movie/popular?api_key=3f5fc34e0d0ca38204d5ccfc5579347c&language=en-US&page=1"
       );
       const data = await response.json();
-      console.log("data", data);
+
       setMovies(data.results);
-      console.log("movies state: ", movies);
-      if (response.ok) {
-        console.log("ok");
-      }
     } catch (error) {
-      console.log("error", error);
+      console.log("Error fetching movie list", error);
     }
   };
 
@@ -27,9 +22,6 @@ export const Home = () => {
   useEffect(() => {
     fecthMovies();
   }, []);
-
-  // const backdropUrl = `https://image.tmdb.org/t/p/w1280/${info.backdrop_path}`;
-  // const posterUrl = `https://image.tmdb.org/t/p/w154/${mov.poster_path}`
 
   //render card component for every movie
   return (
@@ -44,7 +36,3 @@ export const Home = () => {
     </div>
   );
 };
-
-// {data.results.map((mov) => (
-//   <p key={mov.name}>{mov.name}</p>
-// ))}

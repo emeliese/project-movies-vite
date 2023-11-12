@@ -30,30 +30,30 @@ a {
   color: lightgray;
 }
 a:visited {
-  /* font-weight: 700; */
   text-decoration: none;
   color: lightgray;
 }
 
 .card {
   margin: 2rem;
-  /* border: 5px solid hotpink; */
   display: flex;
   max-width: 230px;
 }
 
-/* .movie-details {
-  display: flex;
-flex-direction: row;
-align-items: flex-end;
+.card-title {
+  margin: 1rem;
+  font-size: medium;
+}
 
-} */
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: xx-large;
+}
 .title {
-  /* margin: 3rem; */
   grid-area: title;
-  /* background-color: rgba(40, 40, 36, 0.7); */
   -webkit-text-stroke: 1px;
-  /* justify-self: stretch; */
 }
 
 .overview {
